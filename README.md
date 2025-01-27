@@ -1,4 +1,6 @@
-za pokrenut npm run build
+za pokrenut lokalno:
+npm install
+npm run dev
 
 https://web2-lab5-s3r8.onrender.com/
 
