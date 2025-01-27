@@ -47,6 +47,9 @@ export default {
   methods: {
     updateTitle(view) {
       this.title = view.name || "Not Found";
+    },
+    handleMsg() {
+      alert("HOME EMIT RECEIVED!");
     }
   }
 }
@@ -59,7 +62,7 @@ export default {
     <a href="#/booklist" class="nav-link">Book list</a>
     <a href="#/addbook" class="nav-link">Add a book</a>
   </div>
-  <component :is="currentView" />
+  <component :is="currentView"/>
 </template>
 
 <style>
