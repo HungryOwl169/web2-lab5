@@ -1,10 +1,12 @@
 <script>
+import { useCounterStore } from "./stores/counter";
 export default {
     name: "BookList",
     data() {
         return {
             books: [],
-            hideRead: false
+            hideRead: false,
+            counterStore: useCounterStore()
         }
     },
     methods: {
@@ -21,6 +23,14 @@ export default {
         removeBook(id) {
             this.books = this.books.filter((book) => book.id !== id);
             localStorage.setItem("books", JSON.stringify(this.books));
+            this.updateBookCount();
+        },
+        updateBookCount() {
+            this.counterStore.setCount(this.books.length);
+        },
+        toggleRead(book) {
+            book.read = !book.read;
+            localStorage.setItem('books', JSON.stringify(this.books));
         }
     },
     computed: {
@@ -34,6 +44,7 @@ export default {
         const storedBooks = await this.fetchBooks(); 
         if (storedBooks) {
             this.books = storedBooks;
+            this.updateBookCount();
         } else {
             console.log("No books found in localStorage.");
         }
@@ -46,9 +57,10 @@ export default {
     <button @click="hideRead = !hideRead">
         {{ hideRead ? 'Show all' : 'Hide read' }}
     </button>
+    <p>Total books: {{ counterStore.count }}</p>
     <ul>
         <li v-for="book in filteredBooks" :key="book.title">
-            <input type="checkbox" v-model="book.read">
+            <input type="checkbox" :checked="book.read" @change="toggleRead(book)">
             <span :class="{ read: book.read }">{{ book.title }}, {{ book.author }}</span>
             <button @click="removeBook(book.id)">X</button>
         </li>

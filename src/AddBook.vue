@@ -4,6 +4,7 @@ export default {
     data() {
         return {
             newBook: {
+                id: "",
                 title: "",
                 author: "",
                 details: "",
@@ -14,6 +15,8 @@ export default {
     methods: {
         addBook() {
             const books = JSON.parse(localStorage.getItem('books')) || [];
+            this.newBook.id = Math.random().toString(36).slice(2, 11);
+            this.newBook.read = false;
             books.push(this.newBook);
             localStorage.setItem('books', JSON.stringify(books));
             for (const key in this.newBook){
@@ -30,7 +33,6 @@ export default {
     <form @submit.prevent="addBook">
     <input v-model="newBook.title" required placeholder="title">
     <input v-model="newBook.author" required placeholder="author">
-    <input v-model="newBook.details" required placeholder="details">
     <button type="submit">Add Book</button>
 </form>
 </div>
