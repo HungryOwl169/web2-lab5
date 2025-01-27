@@ -1,3 +1,7 @@
+za pokrenut npm run build
+
+https://web2-lab5-s3r8.onrender.com/
+
 interpolation/one-way binding //Da, BookList.vue, linija 60
 two-way binding //Da, AddBook.vue, linija 34
 methods //Da, AddBook, linija 15
@@ -14,3 +18,7 @@ barem jedna komponenta mora emitirati barem jedan event //Ovo nisam :(
 store (Pinia) //Da, counter.js i BookList linija 60, koristi se counter
 asinkroni dohvat podataka s backenda, možete:
 možete mock napraviti, držati podatke u memoriji, ali mora biti asinkroni poziv //Da, fetchBooks u BookList.vue, napravio sam mock dohvacanje iz local storage da bude asinkrono
+
+
+
+
